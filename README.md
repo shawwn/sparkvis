@@ -15,6 +15,7 @@ E.g. the FFT of MNIST looks like this:
 
 ```
 pip3 install -U sparkvis
+python3
 from sparkvis import sparkvis as vis
 vis(foo)
 ```
