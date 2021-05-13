@@ -70,8 +70,10 @@ class Sparkvis:
         self.print()
 
 
-def sparkvis(*values, aspect_ratio=3, print=True, file=None) -> Sparkvis:
+def sparkvis(*values, aspect_ratio=3, file=None, to_string=False) -> Sparkvis:
     v = Sparkvis(values, aspect_ratio=aspect_ratio)
-    if print:
-        builtins.print(v.to_string(), file=file)
-    return v
+    if to_string:
+        return v.to_string()
+    else:
+        print(v.to_string(), file=file)
+        return v
