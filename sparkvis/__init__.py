@@ -45,7 +45,7 @@ class Sparkvis:
 
     def get_lines(self):
         value = self.value - self.min()
-        lo, hi = self.min(), self.max()
+        lo, hi = value.min(), value.max()
         return [sparklines(x, minimum=lo, maximum=hi) for x in value]
 
     def to_string(self):
