@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sparkvis"
-version = "0.3.0"
+version = "0.3.1"
 description = "Visualize tensors using Sparklines"
 authors = ["Shawn Presser <shawnpresser@gmail.com>"]
 license = "MIT"
