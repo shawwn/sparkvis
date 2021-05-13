@@ -1,4 +1,4 @@
-__version__ = '0.1.0'
+__version__ = '0.3.3'
 
 import builtins
 import numpy as np
