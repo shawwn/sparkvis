@@ -1,5 +1,6 @@
 __version__ = '0.1.0'
 
+import builtins
 import numpy as np
 from sparklines import sparklines
 
@@ -32,8 +33,9 @@ def to_numpy(x, concat_axis=-1) -> np.ndarray:
 class Sparkvis:
     value: np.ndarray
 
-    def __init__(self, value):
+    def __init__(self, value, *, aspect_ratio=3):
         self.value = to_numpy(value)
+        self.aspect_ratio = aspect_ratio
 
     def min(self):
         return self.value.min()
@@ -46,20 +48,30 @@ class Sparkvis:
         value = self.value - self.min()
         return [sparklines(x, minimum=lo, maximum=hi) for x in value]
 
-    def print(self, aspect_ratio=3):
-        print('')
+    def to_string(self):
+        lines = list()
+        lines.append('')
         for sparklines in self.get_lines():
             for sparkline in sparklines:
-                final = ''.join([''.join([c] * aspect_ratio) for c in sparkline])
-                print(final)
+                final = ''.join([''.join([c] * self.aspect_ratio) for c in sparkline])
+                lines.append(final)
         h, w = list(self.value.shape)
-        print(f'{h}x{w} min={self.min():.6} max={self.max():.6}')
+        lines.append('{h}x{w} min={min:.6} max={max:.6}'.format(
+            h=h, w=w, min=self.min(), max=self.max(),
+        ))
+        return '\n'.join(lines)
+
+    def print(self, **print_kwargs):
+        output = self.to_string()
+        print(output, **print_kwargs)
+
 
     def __call__(self):
         self.print()
 
 
-def sparkvis(*values, aspect_ratio=3) -> Sparkvis:
-    v = Sparkvis(values)
-    v.print(aspect_ratio=aspect_ratio)
+def sparkvis(*values, aspect_ratio=3, print=True, file=None) -> Sparkvis:
+    v = Sparkvis(values, aspect_ratio=aspect_ratio)
+    if print:
+        builtins.print(v.to_string(), file=file)
     return v
