@@ -21,8 +21,32 @@ vis(foo)
 
 `foo` can be a torch tensor, tf tensor, numpy array, etc. It supports anything with a .numpy() method.
 
-`vis(a, b)` will put 'a' and 'b' side by side.
+`vis(a, b)` will put 'a' and 'b' side by side. For example,
 
+```py
+import numpy as np
+from sparkvis import sparkvis as vis
+x = np.random.rand(7,7)
+vis(x, np.zeros_like(x), np.ones_like(x))
+```
+
+will print this:
+
+```
+▅▅▅▄▄▄▂▂▂▅▅▅▄▄▄▅▅▅▅▅▅▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█████████████████████
+▄▄▄▃▃▃▃▃▃▆▆▆▁▁▁▃▃▃███▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█████████████████████
+▆▆▆▇▇▇▆▆▆▂▂▂▇▇▇▅▅▅▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█████████████████████
+███▇▇▇▃▃▃▇▇▇▄▄▄▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█████████████████████
+▆▆▆▅▅▅▇▇▇▅▅▅███▆▆▆▄▄▄▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█████████████████████
+▂▂▂▇▇▇▇▇▇▆▆▆▆▆▆▁▁▁▃▃▃▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█████████████████████
+▅▅▅▇▇▇▆▆▆▅▅▅▅▅▅▁▁▁▇▇▇▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁█████████████████████
+7x21 min=0.0 max=1.0
+<sparkvis.Sparkvis object at 0x10230f310>
+```
+
+You can pass `to_string=True` if you want the string instead of
+printing to stdout. Or you can pass `file=f` like the normal python
+`print` function.
 
 ### Note on Tensorflow in Graph mode
 
