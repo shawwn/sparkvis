@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "sparkvis"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["Shawn Presser <shawnpresser@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.6"
 sparklines = "^0.4.2"
 
 [tool.poetry.dev-dependencies]

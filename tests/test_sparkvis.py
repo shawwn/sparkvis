@@ -2,9 +2,6 @@ import pytest
 import sparkvis
 from functools import partial
 
-def test_version():
-    assert sparkvis.__version__ == '0.1.0'
-
 
 class API:
     def __getattr__(self, name: str):
